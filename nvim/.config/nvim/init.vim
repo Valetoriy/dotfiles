@@ -7,5 +7,7 @@ luafile $HOME/.config/nvim/plugin/airline.lua
 luafile $HOME/.config/nvim/plugin/telescope.lua
 luafile $HOME/.config/nvim/plugin/sneak.lua
 luafile $HOME/.config/nvim/plugin/quickscope.lua
+luafile $HOME/.config/nvim/plugin/rnvimr.lua
+luafile $HOME/.config/nvim/plugin/floaterm.lua
 luafile $HOME/.config/nvim/plugin/indentline.lua
 luafile $HOME/.config/nvim/plugin/colorizer.lua

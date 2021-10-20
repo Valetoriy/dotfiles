@@ -20,11 +20,20 @@ Plug 'justinmk/vim-sneak'
 -- Quickscope
 Plug 'unblevable/quick-scope'
 
+-- Ranger
+Plug 'kevinhwang91/rnvimr'
+
+-- Floaterm
+Plug 'voldikss/vim-floaterm'
+
 -- Indent line
 Plug 'lukas-reineke/indent-blankline.nvim'
 
 -- Colorizer
 Plug 'norcalli/nvim-colorizer.lua'
+
+-- Devicons
+Plug 'kyazdani42/nvim-web-devicons'
 
 --call plug#end()
 vim.call('plug#end')
