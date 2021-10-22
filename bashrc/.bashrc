@@ -10,6 +10,7 @@ alias cat='lolcat'
 alias la='lsd -A'
 alias ll='lsd -lA'
 alias tree='tree -a'
+alias r='ranger'
 
 PS1='[\u@\h \W]\$ '
 

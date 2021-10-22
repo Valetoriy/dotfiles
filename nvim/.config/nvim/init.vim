@@ -1,6 +1,6 @@
 luafile $HOME/.config/nvim/general/settings.lua
 luafile $HOME/.config/nvim/keys/mappings.lua
-luafile $HOME/.config/nvim/vim-plug/plugins.lua
+luafile $HOME/.config/nvim/packer/plugins.lua
 
 colorscheme codedark
 luafile $HOME/.config/nvim/plugin/airline.lua
