@@ -11,3 +11,6 @@ luafile $HOME/.config/nvim/plugin/rnvimr.lua
 luafile $HOME/.config/nvim/plugin/floaterm.lua
 luafile $HOME/.config/nvim/plugin/indentline.lua
 luafile $HOME/.config/nvim/plugin/colorizer.lua
+luafile $HOME/.config/nvim/plugin/web-devicons.lua
+luafile $HOME/.config/nvim/plugin/treesitter.lua
+luafile $HOME/.config/nvim/plugin/cmp.lua

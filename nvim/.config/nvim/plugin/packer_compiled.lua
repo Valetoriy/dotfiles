@@ -69,9 +69,37 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/spff/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/home/spff/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/home/spff/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/spff/.local/share/nvim/site/pack/packer/start/cmp-path"
+  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/home/spff/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
+  },
+  ["lspkind-nvim"] = {
+    loaded = true,
+    path = "/home/spff/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
+  },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/home/spff/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/home/spff/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
