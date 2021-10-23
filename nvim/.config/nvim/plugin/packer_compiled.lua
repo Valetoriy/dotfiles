@@ -69,6 +69,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/home/spff/.local/share/nvim/site/pack/packer/start/LuaSnip"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/spff/.local/share/nvim/site/pack/packer/start/cmp-buffer"
@@ -84,6 +88,10 @@ _G.packer_plugins = {
   ["cmp-path"] = {
     loaded = true,
     path = "/home/spff/.local/share/nvim/site/pack/packer/start/cmp-path"
+  },
+  cmp_luasnip = {
+    loaded = true,
+    path = "/home/spff/.local/share/nvim/site/pack/packer/start/cmp_luasnip"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
@@ -156,6 +164,10 @@ _G.packer_plugins = {
   ["vim-sneak"] = {
     loaded = true,
     path = "/home/spff/.local/share/nvim/site/pack/packer/start/vim-sneak"
+  },
+  vimspector = {
+    loaded = true,
+    path = "/home/spff/.local/share/nvim/site/pack/packer/start/vimspector"
   }
 }
 

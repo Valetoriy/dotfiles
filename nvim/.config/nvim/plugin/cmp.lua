@@ -31,7 +31,14 @@ cmp.setup {
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
         { name = "path" },
+        { name = "luasnip" },
         { name = "buffer" }
+    },
+
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end
     },
 
     formatting = {
@@ -41,7 +48,8 @@ cmp.setup {
                 buffer = '[buf]',
                 nvim_lsp = '[LSP]',
                 nvim_lua = '[api]',
-                path = '[path]'
+                path = '[path]',
+                luasnip = '[snip]'
             },
         },
     },
