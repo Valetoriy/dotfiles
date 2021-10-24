@@ -24,7 +24,11 @@ return require('packer').startup(function(use)
     use 'voldikss/vim-floaterm'
 
     -- Indent line
-    use 'lukas-reineke/indent-blankline.nvim'
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        -- Fixes horizontal scrolling
+        commit = '398843d7f187cc6aa5f22f7f3dd637572d1733d2'
+    }
 
     -- Colorizer
     use 'norcalli/nvim-colorizer.lua'
