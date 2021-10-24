@@ -41,6 +41,9 @@ return require('packer').startup(function(use)
     use 'saadparwaiz1/cmp_luasnip'
     use 'onsails/lspkind-nvim'
 
+    -- Comment
+    use "terrortylor/nvim-comment"
+
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
