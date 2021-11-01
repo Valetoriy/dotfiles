@@ -12,5 +12,5 @@ g.floaterm_height = 0.8
 g.floaterm_wintitle = 0
 g.floaterm_autoclose = 1
 
-vim.api.nvim_set_keymap('n', '<Leader>tt', ":FloatermToggle<cr>", { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>tp', ":FloatermNew python<cr>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>tt', ":FloatermToggle<cr>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>tp', ":FloatermNew python<cr>", { silent = true, noremap = true })
