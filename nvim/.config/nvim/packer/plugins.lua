@@ -31,7 +31,7 @@ return require('packer').startup(function(use)
 
     -- LSP
     use 'neovim/nvim-lspconfig'
-    use { 'tami5/lspsaga.nvim', branch = 'nvim51' } -- Subject to change
+    use {'tami5/lspsaga.nvim'} -- Subject to change
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
@@ -40,6 +40,9 @@ return require('packer').startup(function(use)
     use 'L3MON4D3/LuaSnip'
     use 'saadparwaiz1/cmp_luasnip'
     use 'onsails/lspkind-nvim'
+
+    -- Copilot
+    -- use 'github/copilot.vim'
 
     -- Comment
     use "terrortylor/nvim-comment"

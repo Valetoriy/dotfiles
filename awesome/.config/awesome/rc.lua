@@ -267,8 +267,8 @@ end,
 awful.key({ modkey },            "r",     function () awful.util.spawn("dmenu_run") end,
 {description = "run dmenu", group = "launcher"}),
 
--- Yandex
-awful.key({ modkey },            "y",     function () awful.util.spawn("yandex-browser-beta") end,
+-- Chromium
+awful.key({ modkey },            "y",     function () awful.util.spawn("chromium") end,
 {description = "run browser", group = "launcher"}),
 
 -- Flameshot

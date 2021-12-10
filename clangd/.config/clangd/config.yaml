@@ -2,4 +2,4 @@ If:
   PathMatch: [.*\.cpp, .*\.hpp]
 
 CompileFlags:
-  Add: [-std=c++17]
+  Add: [-std=c++2b]

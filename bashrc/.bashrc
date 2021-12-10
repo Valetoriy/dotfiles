@@ -25,7 +25,7 @@ fi
 export VISUAL=nvim
 export EDITOR=nvim
 
-co() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR; }
+co() { du -a ~/.config ~/valfiles| awk '{print $2}' | fzf | xargs -r $EDITOR; }
 
 neofetch
 
