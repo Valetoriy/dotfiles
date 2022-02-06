@@ -35,7 +35,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = {'clangd', 'pyright', 'sumneko_lua', 'tsserver', 'html', 'cssls', 'jsonls'}
+local servers = {'clangd', 'pyright', 'sumneko_lua', 'tsserver', 'html', 'cssls', 'jsonls'}--, 'rust_analyzer'}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -76,6 +76,24 @@ require'lspconfig'.jsonls.setup {
 require'lspconfig'.cssls.setup {
   capabilities = capabilities,
 }
+
+-- require'lspconfig'.rust_analyzer.setup({
+--     on_attach=on_attach,
+--     settings = {
+--         ["rust-analyzer"] = {
+--             assist = {
+--                 importGranularity = "module",
+--                 importPrefix = "by_self",
+--             },
+--             cargo = {
+--                 loadOutDirsFromCheck = true
+--             },
+--             procMacro = {
+--                 enable = true
+--             },
+--         }
+--     }
+-- })
 
 require('lspconfig').sumneko_lua.setup {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};

@@ -30,3 +30,8 @@ co() { du -a ~/.config ~/valfiles| awk '{print $2}' | fzf | xargs -r $EDITOR; }
 neofetch
 
 alias luamake=/home/spff/gitimport/lua-language-server/3rd/luamake/luamake
+
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION
