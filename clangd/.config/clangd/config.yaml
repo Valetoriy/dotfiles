@@ -2,4 +2,4 @@ If:
   PathMatch: [.*\.cpp, .*\.hpp]
 
 CompileFlags:
-  Add: [-std=c++2b, -Wall, -Wextra, -Wpedantic, '-fsanitize=address,undefined']
+  Add: [-std=c++2b, -Wall, -Wextra, -Wpedantic, -Wconversion]

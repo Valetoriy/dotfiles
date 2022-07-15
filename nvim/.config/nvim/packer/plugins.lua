@@ -11,6 +11,9 @@ return require('packer').startup(function(use)
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
 
+    -- Git integration
+    use 'tpope/vim-fugitive'
+
     -- Sneak
     use 'justinmk/vim-sneak'
 
@@ -31,7 +34,7 @@ return require('packer').startup(function(use)
 
     -- LSP
     use 'neovim/nvim-lspconfig'
-    use {'tami5/lspsaga.nvim'} -- Subject to change
+    use 'tami5/lspsaga.nvim' -- Subject to change
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
@@ -40,6 +43,11 @@ return require('packer').startup(function(use)
     use 'L3MON4D3/LuaSnip'
     use 'saadparwaiz1/cmp_luasnip'
     use 'onsails/lspkind-nvim'
+
+    -- Markdown editing
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
+        setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+        ft = { "markdown" }, })
 
     -- Copilot
     -- use 'github/copilot.vim'
