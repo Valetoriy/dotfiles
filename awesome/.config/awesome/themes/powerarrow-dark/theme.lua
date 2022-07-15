@@ -86,7 +86,8 @@ local cpu = lain.widget.cpu({
 local tempicon = wibox.widget.textbox("🌡️")
 local temp = lain.widget.temp({
     timeout = 2,
-    tempfile = "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input", 
+    tempfile = "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input",
+    -- tempfile = "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
     settings = function()
         widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
     end
@@ -102,6 +103,47 @@ local net = lain.widget.net({
                           markup("#11A8CD", " " .. string.format("%06.1f", net_now.sent) .. " ")))
     end
 })
+
+-- Battery
+local baticon = wibox.widget.textbox("⚡")
+local bat = lain.widget.bat({
+    settings = function()
+        if bat_now.status and bat_now.status ~= "N/A" then
+            widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
+        else
+            widget:set_markup(markup.font(theme.font, " AC "))
+        end
+    end
+})
+
+bat.widget:buttons(awful.util.table.join(
+                               awful.button({}, 1, function ()
+                                     awful.util.spawn("xbacklight -inc 2")
+                                     theme.volume.update()
+                               end),
+                               awful.button({}, 3, function ()
+                                     awful.util.spawn("xbacklight -dec 2")
+                                     theme.volume.update()
+                               end)
+))
+-- ALSA volume
+local volicon = wibox.widget.textbox("🔊")
+theme.volume = lain.widget.alsa({
+    settings = function()
+        widget:set_markup(markup.font(theme.font, " " .. volume_now.level .. "% "))
+    end
+})
+
+theme.volume.widget:buttons(awful.util.table.join(
+                               awful.button({}, 1, function ()
+                                     awful.util.spawn("amixer set Master 5%+")
+                                     theme.volume.update()
+                               end),
+                               awful.button({}, 3, function ()
+                                     awful.util.spawn("amixer set Master 5%-")
+                                     theme.volume.update()
+                               end)
+))
 
 -- Separators
 local spr     = wibox.widget.textbox(' ')
@@ -160,6 +202,12 @@ function theme.at_screen_connect(s)
             wibox.container.background(keyboardlayout, theme.bg_focus),
             --keyboardlayout,
             --spr,
+            arrl_dl,
+            volicon,
+            theme.volume.widget,
+            arrl_ld,
+            wibox.container.background(baticon, theme.bg_focus),
+            wibox.container.background(bat.widget, theme.bg_focus),
             arrl_dl,
             memicon,
             mem.widget,

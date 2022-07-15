@@ -267,8 +267,8 @@ end,
 awful.key({ modkey },            "r",     function () awful.util.spawn("dmenu_run") end,
 {description = "run dmenu", group = "launcher"}),
 
--- Chromium
-awful.key({ modkey },            "y",     function () awful.util.spawn("chromium") end,
+-- Google Chrome
+awful.key({ modkey },            "y",     function () awful.util.spawn("google-chrome-stable") end,
 {description = "run browser", group = "launcher"}),
 
 -- Flameshot
