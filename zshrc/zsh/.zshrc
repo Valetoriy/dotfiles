@@ -52,6 +52,11 @@ alias ll='lsd -lA'
 alias tree='tree -a'
 alias r='ranger'
 alias grep='grep --color=auto'
+alias v='nvim'
+alias vcpp='clang++ -std=c++2b -stdlib=libc++ -fmodules -fbuiltin-module-map -fsanitize=address,leak,undefined'
+alias vgpp='g++ -std=c++23 -Wall -Wextra -Wpedantic -Wconversion -fmodules-ts -fsanitize=address,leak,undefined'
+alias vgc='gcc -std=c2x -Wall -Wextra -Wpedantic -Wconversion -fsanitize=address,leak,undefined'
+alias vcc='clang -std=c2x -Wall -Wextra -Wpedantic -Wconversion -fsanitize=address,leak,undefined'
 
 export VISUAL=nvim
 export EDITOR=nvim
