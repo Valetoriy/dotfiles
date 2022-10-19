@@ -1,0 +1,6 @@
+dmenu
+stest
+
+# clangd
+.cache/
+compile_commands.json
