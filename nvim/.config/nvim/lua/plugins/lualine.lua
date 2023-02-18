@@ -8,6 +8,7 @@ return function()
         cyan   = '#11a8cd',
         white  = '#c6c6c6',
         red    = '#cd3131',
+        yellow = '#e5e510',
         violet = '#bc3fbc',
         grey   = '#303030',
     }
@@ -36,7 +37,11 @@ return function()
         },
         sections = {
             lualine_a = {
-                { 'mode', separator = { left = '' }, right_padding = 2 },
+                { 'mode', separator = { left = '' }, right_padding = 2,
+                    color = function(section)
+                        return { bg = vim.bo.modified and colors.yellow or colors.cyan }
+                    end,
+                },
             },
             lualine_b = { 'filename', 'branch' },
             lualine_c = { 'fileformat' },

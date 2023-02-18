@@ -48,7 +48,6 @@ return {
                 },
             }
         end,
-        build = ':TSUpdate',
     },
     'tpope/vim-fugitive',
     {
