@@ -1,8 +1,4 @@
--- Bubbles config for lualine
--- Author: lokesh-krishna
--- MIT license, see LICENSE for more details.
 return function()
-    -- stylua: ignore
     local colors = {
         green  = '#0dbc79',
         cyan   = '#11a8cd',
@@ -38,8 +34,11 @@ return function()
         sections = {
             lualine_a = {
                 { 'mode', separator = { left = '' }, right_padding = 2,
-                    color = function(section)
-                        return { bg = vim.bo.modified and colors.yellow or colors.cyan }
+                    color = function()
+                        return {
+                            bg = vim.api.nvim_get_mode().mode == 'n'
+                            and vim.bo.modified and colors.yellow
+                        }
                     end,
                 },
             },
