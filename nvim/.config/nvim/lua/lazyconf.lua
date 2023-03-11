@@ -176,4 +176,12 @@ return {
         end,
         dependencies = 'tpope/vim-repeat',
     },
+    {
+        'iamcco/markdown-preview.nvim',
+        config = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        build = "cd app && npm install",
+        ft = "markdown"
+    }
 }
