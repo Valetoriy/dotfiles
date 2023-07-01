@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return {
-    'Valetoriy/darkplus.nvim',
+    'LunarVim/darkplus.nvim',
     {
         'kevinhwang91/rnvimr',
         config = function()
