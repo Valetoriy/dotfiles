@@ -144,9 +144,17 @@ return {
         dependencies = 'tpope/vim-repeat',
     },
     {
-        "ThePrimeagen/harpoon",
+        'ThePrimeagen/harpoon',
         config = require('plugins.harpoon'),
-        branch = "harpoon2",
-        dependencies = "nvim-lua/plenary.nvim",
+        branch = 'harpoon2',
+        dependencies = 'nvim-lua/plenary.nvim',
     },
-}
+    {
+        'iamcco/markdown-preview.nvim',
+        config = function()
+            vim.g.mkdp_filetypes = { 'markdown' }
+        end,
+        build = 'cd app && npm install',
+        ft = 'markdown'
+    }
+} 
