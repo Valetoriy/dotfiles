@@ -37,7 +37,7 @@ return function()
                     color = function()
                         return {
                             bg = vim.api.nvim_get_mode().mode == 'n'
-                            and vim.bo.modified and colors.yellow
+                                and vim.bo.modified and colors.yellow
                         }
                     end,
                 },
@@ -45,7 +45,11 @@ return function()
             lualine_b = { 'filename', 'branch' },
             lualine_c = { 'fileformat' },
             lualine_x = {},
-            lualine_y = { 'filetype', 'progress' },
+            lualine_y = {
+                function()
+                    return os.date('%Y-%m-%d %H:%M:%S')
+                end,
+                'encoding', 'filetype', 'progress' },
             lualine_z = {
                 { 'location', separator = { right = '' }, left_padding = 2 },
             },

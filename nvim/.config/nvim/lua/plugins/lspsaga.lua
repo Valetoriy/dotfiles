@@ -1,7 +1,7 @@
 return function()
     local keymap = vim.keymap.set
 
-    keymap('n', '\\gh', '<cmd>Lspsaga lsp_finder<CR>')
+    keymap('n', '\\gh', '<cmd>Lspsaga finder<CR>')
 
     keymap('n', '\\ca', '<cmd>Lspsaga code_action<CR>')
 
@@ -29,5 +29,8 @@ return function()
         symbol_in_winbar = {
             enable = false, -- слишком медленно
         },
+        outline = { enable = false },
+        implement = { enable = false },
+        callhierarchy = { enable = false },
     })
 end

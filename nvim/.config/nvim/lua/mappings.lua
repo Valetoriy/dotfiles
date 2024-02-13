@@ -11,6 +11,8 @@ keymap('n', 'N', 'Nzzzv')
 
 keymap('x', '<Leader>p', '"_dP')
 
+keymap('n', '<TAB>q', ':bd!<CR>')
+
 keymap('n', '<M-j>', ':resize -2<cr>')
 keymap('n', '<M-k>', ':resize +2<cr>')
 keymap('n', '<M-h>', ':vertical resize +2<cr>')

@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return {
-    'Valetoriy/darkplus.nvim',
+    'LunarVim/darkplus.nvim',
     {
         'kevinhwang91/rnvimr',
         config = function()
@@ -58,20 +58,10 @@ return {
         'terrortylor/nvim-comment',
         config = function()
             require('nvim_comment').setup {
-                line_mapping = "<Leader>l", operator_mapping = "<Leader>c" }
+                line_mapping = '<Leader>v', operator_mapping = '<Leader>c' }
         end,
     },
-    {
-        'lukas-reineke/indent-blankline.nvim',
-        config = function()
-            require('indent_blankline').setup {
-                space_char_blankline = ' ',
-                char_highlight_list = {
-                    'IndentBlanklineIndent1'
-                },
-            }
-        end,
-    },
+    { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
     {
         'norcalli/nvim-colorizer.lua',
         config = function()
@@ -83,11 +73,11 @@ return {
         branch = 'v1.x',
         config = function()
             local lsp = require('lsp-zero').preset {
-                    name = 'minimal',
-                    set_lsp_keymaps = true,
-                    manage_nvim_cmp = true,
-                    suggest_lsp_servers = true,
-                }
+                name = 'minimal',
+                set_lsp_keymaps = true,
+                manage_nvim_cmp = true,
+                suggest_lsp_servers = true,
+            }
 
             lsp.setup()
         end,
@@ -142,29 +132,6 @@ return {
         dependencies = 'nvim-tree/nvim-web-devicons',
     },
     {
-        'akinsho/bufferline.nvim',
-        branch = 'v3.0.0',
-        config = function()
-            local keymap = vim.keymap.set
-
-            keymap('n', '<TAB>n', ':BufferLineCycleNext<CR>')
-            keymap('n', '<TAB>[', ':BufferLineMoveNext<CR>')
-            keymap('n', '<TAB>p', ':BufferLineCyclePrev<CR>')
-            keymap('n', '<TAB>]', ':BufferLineMovePrev<CR>')
-            keymap('n', '<TAB>q', ':bd!<CR>')
-
-            require('bufferline').setup({
-                options = {
-                    indicator = {
-                        icon = '▊',
-                    },
-                    diagnostics = 'nvim_lsp',
-                }
-            })
-        end,
-        dependencies = 'nvim-tree/nvim-web-devicons'
-    },
-    {
         'nvim-lualine/lualine.nvim',
         config = require('plugins.lualine'),
         dependencies = 'nvim-tree/nvim-web-devicons'
@@ -175,5 +142,11 @@ return {
             require('leap').add_default_mappings()
         end,
         dependencies = 'tpope/vim-repeat',
+    },
+    {
+        "ThePrimeagen/harpoon",
+        config = require('plugins.harpoon'),
+        branch = "harpoon2",
+        dependencies = "nvim-lua/plenary.nvim",
     },
 }
