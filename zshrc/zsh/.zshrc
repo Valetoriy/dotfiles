@@ -60,11 +60,15 @@ alias vcc='clang -std=c2x -Wall -Wextra -Wpedantic -Wconversion -fsanitize=addre
 
 alias tk='cat ~/valetoriy/TOKEN.txt | xclip -sel clip'
 alias gs='git status'
+alias gl='git log'
+alias gd='git diff'
 alias ga='git add'
-alias gc='git commmit'
+alias gc='git commit'
 alias gp='tk; git push'
 alias gu='git pull'
+
 alias p='yay -Syyuu'
+alias f='yay -Ss'
 
 export VISUAL=nvim
 export EDITOR=nvim
