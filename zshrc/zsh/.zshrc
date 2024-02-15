@@ -69,6 +69,9 @@ alias gu='git pull'
 
 alias p='yay -Syyuu'
 alias f='yay -Ss'
+alias i='yay -S'
+alias d='yay -Rns'
+alias q='yay -Qs'
 
 export VISUAL=nvim
 export EDITOR=nvim
