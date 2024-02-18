@@ -125,7 +125,7 @@ screens = [
                     background="#313131"
                 ),
                 widget.Memory(
-                    format="󱉟 {MemUsed:.0f}{mm}/{MemTotal:.0f}{mm}",
+                    format="󱉟 {MemUsed:.0f}{mm}|{SwapUsed:.0f}{mm}",
                     background="#1a1a1a"
                 ),
                 widget.CPU(format=" {load_percent}%", background="#313131"),
@@ -150,7 +150,7 @@ screens = [
             20,
             border_width=[0, 0, 0, 0],  # Draw top and bottom borders
         ),
-        wallpaper="~/downloads/pics/dragon.jpg",
+        wallpaper="~/Downloads/pics/dragon.jpg",
         wallpaper_mode="fill",
     ),
 ]

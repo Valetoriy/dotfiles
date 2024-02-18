@@ -67,18 +67,15 @@ alias gc='git commit'
 alias gp='tk; git push'
 alias gu='git pull'
 
-alias p='yay -Syyuu'
-alias f='yay -Ss'
-alias i='yay -S'
-alias d='yay -Rns'
-alias q='yay -Qs'
+alias p='paru -Syyuu'
+alias f='paru -Ss --bottomup'
+alias i='paru -S'
+alias d='paru -Rns'
+alias q='paru -Qs'
 
 export VISUAL=nvim
 export EDITOR=nvim
 
 co() { du -a ~/.config ~/valfiles| awk '{print $2}' | fzf | xargs -r $EDITOR; }
 
-alias luamake=/home/spff/gitimport/lua-language-server/3rd/luamake/luamake
-
 export PATH=/home/spff/.cargo/bin/:/home/spff/.ghcup/ghc/9.4.7/bin/:$PATH
-export QSYS_ROOTDIR="/home/spff/.cache/yay/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/21.1/quartus/sopc_builder/bin"
