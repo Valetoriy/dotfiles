@@ -6,6 +6,27 @@ from libqtile.utils import guess_terminal
 mod = "mod4"
 terminal = guess_terminal()
 
+def switch_to_group(qtile, group_number):
+    current_screen = qtile.screens.index(qtile.current_screen)
+    name = f'{current_screen}{group_number}'
+    qtile.focus_screen(current_screen)
+    qtile.groups_map[name].cmd_toscreen()
+
+def send_to_group(qtile, group_number):
+    current_screen = qtile.screens.index(qtile.current_screen)
+    name = f'{current_screen}{group_number}'
+    qtile.focus_screen(current_screen)
+    qtile.current_window.cmd_togroup(name, switch_group=True)
+
+def send_to_screen(qtile):
+    current_window = qtile.current_window
+    current_screen = qtile.screens.index(qtile.current_screen)
+    screen_number = 0
+    if current_screen == 0:
+        screen_number = 1
+    qtile.focus_screen(screen_number)
+    current_window.cmd_togroup(qtile.current_group.name)
+
 keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
@@ -24,14 +45,19 @@ keys = [
     Key([mod, "shift"], "o", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "shift"], "u", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "shift"], "i", lazy.layout.grow_up(), desc="Grow window up"),
+
+    Key([mod, "control"], "j", lazy.next_screen(), desc="Next screen"),
+    Key([mod, "control"], "k", lazy.next_screen(), desc="Next screen"),
+    Key([mod], "o", lazy.function(send_to_screen), desc="Switch screens"),
+
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "f", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
-    # Key( [mod], "f", lazy.window.toggle_fullscreen(),
-    #     desc="Toggle fullscreen on the focused window",
-    # ),
+    Key([mod], "Tab", lazy.window.toggle_fullscreen(),
+        desc="Toggle fullscreen on the focused window",
+    ),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
@@ -45,27 +71,23 @@ keys = [
     Key(["shift"], "Alt_L", lazy.widget["keyboardlayout"].next_keyboard(), desc="Change keyboard layout"),
 ]
 
-groups = [Group(i) for i in "1234"]
+groups_by_screens = [
+    ["1", "2", "3", "4"], # screen 0
+    ["1", "2", "3", "4"], # screen 1
+]
 
-for i in groups:
-    keys.extend(
-        [
-            # mod1 + group number = switch to group
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
-            ),
-            # mod1 + shift + group number = switch to & move focused window to group
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
-            ),
-        ]
-    )
+groups = []
+for screen, group_labels in enumerate(groups_by_screens):
+    for i, label in enumerate(group_labels):
+        groups.append(
+            Group(name=f"{screen}{i + 1}", screen_affinity=screen, label=label)
+        )
+
+for i, group in enumerate(groups):
+    keys.extend([
+        Key([mod], str(i), lazy.function(switch_to_group, i), desc=f"Switch to group {group.name}"),
+        Key([mod, "shift"], str(i), lazy.function(send_to_group, i), desc=f"Send window to group {group.name}"),
+    ])
 
 layouts = [
     layout.Columns(
@@ -87,72 +109,106 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+notify = widget.Notify()
+keyboard = widget.KeyboardLayout(
+    configured_keyboards=["us", "ru"], background="#313131"
+)
+memory = widget.Memory(
+    format="󱉟 {MemUsed:.0f}{mm}",
+    background="#1a1a1a"
+)
+cpu = widget.CPU(format=" {load_percent}%", background="#313131")
+thermal_sensor = widget.ThermalSensor(
+    format=" {temp:.1f}{unit}",
+    tag_sensor="Tctl",
+    background="#1a1a1a"
+)
+net_down = widget.Net(
+    format="↓{down:6.2f}{down_suffix:<2}",
+    foreground="#2472c8",
+    background="#313131"
+)
+net_up = widget.Net(
+    format="↑{up:6.2f}{up_suffix:<2}",
+    foreground="#11a8cd",
+    background="#313131"
+)
+clock = widget.Clock(format="%a %d/%m %H:%M", background="#1a1a1a")
+
+wp = "~/Downloads/pics/dragon.jpg"
+wp_mode = "fill"
+
 screens = [
     Screen(
         top=bar.Bar(
             [
-                # keyb, volume, power, memusage, cpuusage, temp, net inout
                 widget.GroupBox(
+                    visible_groups=[f"0{i + 1}" for i in range(4)],
                     highlight_method="block",
                     rounded=False,
                     this_current_screen_border="#11a8cd",
                     this_screen_border="#2472c8",
                     inactive="#717171",
                     background="#1a1a1a"
-                ),
+                    ),
                 widget.WindowTabs(
                     selected=("<b><i>", "</i></b>"),
                     foreground="#11a8cd",
                     background="#1a1a1a"
-                ),
+                    ),
 
-                widget.Notify(),
+                notify,
                 widget.Systray(background="#1a1a1a"),
-                widget.KeyboardLayout(
-                    configured_keyboards=["us", "ru"], background="#313131"
-                ),
-                widget.Volume(fmt="󰕾 {}", background="#1a1a1a"),
-                widget.Backlight(
-                    backlight_name="intel_backlight",
-                    step=5,
-                    fmt="󰃠 {}",
-                    background="#313131"
-                ),
-                widget.BatteryIcon(update_interval=1, background="#313131"),
-                widget.Battery(
-                    format="{percent:2.0%}",
-                    update_interval=1,
-                    background="#313131"
-                ),
-                widget.Memory(
-                    format="󱉟 {MemUsed:.0f}{mm}|{SwapUsed:.0f}{mm}",
-                    background="#1a1a1a"
-                ),
-                widget.CPU(format=" {load_percent}%", background="#313131"),
-                widget.ThermalSensor(
-                    format=" {temp:.1f}{unit}",
-                    tag_sensor="Core 0",
-                    background="#1a1a1a"
-                ),
-                widget.Net(
-                    format="↓{down:6.2f}{down_suffix:<2}",
-                    foreground="#2472c8",
-                    background="#313131"
-                ),
-                widget.Net(
-                    format="↑{up:6.2f}{up_suffix:<2}",
-                    foreground="#11a8cd",
-                    background="#313131"
-                ),
-                widget.Clock(format="%a %d/%m %H:%M", background="#1a1a1a"),
-                widget.CurrentLayoutIcon(background="#313131"),
+                keyboard,
+                memory,
+                cpu,
+                thermal_sensor,
+                net_down,
+                net_up,
+                clock,
+                widget.CurrentLayoutIcon(background="#313131")
             ],
-            20,
+            19,
             border_width=[0, 0, 0, 0],  # Draw top and bottom borders
         ),
-        wallpaper="~/Downloads/pics/dragon.jpg",
-        wallpaper_mode="fill",
+        wallpaper=wp,
+        wallpaper_mode=wp_mode,
     ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(
+                    visible_groups=[f"1{i + 1}" for i in range(4)],
+                    highlight_method="block",
+                    rounded=False,
+                    this_current_screen_border="#11a8cd",
+                    this_screen_border="#2472c8",
+                    inactive="#717171",
+                    background="#1a1a1a"
+                    ),
+                widget.WindowTabs(
+                    selected=("<b><i>", "</i></b>"),
+                    foreground="#11a8cd",
+                    background="#1a1a1a"
+                    ),
+
+                notify,
+                keyboard,
+                memory,
+                cpu,
+                thermal_sensor,
+                net_down,
+                net_up,
+                clock,
+                widget.CurrentLayoutIcon(background="#313131")
+            ],
+            19,
+            border_width=[0, 0, 0, 0],  # Draw top and bottom borders
+        ),
+        wallpaper=wp,
+        wallpaper_mode=wp_mode,
+    ),
+
 ]
 
 # Drag floating layouts.

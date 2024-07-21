@@ -49,7 +49,6 @@ alias ls='lsd'
 alias cat='lolcat'
 alias la='lsd -A'
 alias l='lsd -lA'
-alias tree='tree -a'
 alias r='ranger'
 alias grep='grep --color=auto'
 alias v='nvim'
@@ -76,6 +75,6 @@ alias q='paru -Qs'
 export VISUAL=nvim
 export EDITOR=nvim
 
-co() { du -a ~/.config ~/valfiles| awk '{print $2}' | fzf | xargs -r $EDITOR; }
+co() { du -a ~/.config ~/dotfiles| awk '{print $2}' | fzf | xargs -r $EDITOR; }
 
 export PATH=/home/spff/.cargo/bin/:/home/spff/.ghcup/ghc/9.4.7/bin/:$PATH

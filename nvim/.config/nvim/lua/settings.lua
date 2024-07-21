@@ -37,3 +37,4 @@ v.timeoutlen = 500
 v.formatoptions:remove({ 'c', 'r', 'o' })
 v.clipboard = 'unnamedplus'
 v.shortmess:append({ c = true })
+v.ignorecase = true
