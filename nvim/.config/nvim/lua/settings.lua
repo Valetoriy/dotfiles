@@ -38,3 +38,5 @@ v.formatoptions:remove({ 'c', 'r', 'o' })
 v.clipboard = 'unnamedplus'
 v.shortmess:append({ c = true })
 v.ignorecase = true
+v.smartcase = true
+v.textwidth = 90

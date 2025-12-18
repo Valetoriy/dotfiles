@@ -48,5 +48,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-xset r rate 300 50 &
+# spoofdpi > /dev/null&
+# xset r rate 300 50 &
+sudo ~/gitimport/zapret-discord-youtube-linux/main_script.sh -nointeractive&
 exec qtile start
+# exec startxfce4

@@ -50,9 +50,13 @@ return {
         end,
     },
     'tpope/vim-fugitive',
+    -- {
+    --     'voldikss/vim-floaterm',
+    --     config = require('plugins.floaterm'),
+    -- },
     {
-        'voldikss/vim-floaterm',
-        config = require('plugins.floaterm'),
+        'akinsho/toggleterm.nvim',
+        config = require('plugins.toggleterm'),
     },
     {
         'terrortylor/nvim-comment',
@@ -67,35 +71,6 @@ return {
         config = function()
             require('colorizer').setup()
         end
-    },
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
-        config = function()
-            local lsp = require('lsp-zero').preset {
-                name = 'minimal',
-                set_lsp_keymaps = true,
-                manage_nvim_cmp = true,
-                suggest_lsp_servers = true,
-            }
-
-            lsp.setup()
-        end,
-        dependencies = {
-            'neovim/nvim-lspconfig',
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
-
-            'hrsh7th/nvim-cmp',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'saadparwaiz1/cmp_luasnip',
-            'hrsh7th/cmp-nvim-lua',
-
-            'L3MON4D3/LuaSnip',
-            'rafamadriz/friendly-snippets',
-        },
     },
     {
         'glepnir/lspsaga.nvim',
@@ -139,7 +114,9 @@ return {
     {
         'ggandor/leap.nvim',
         config = function()
-            require('leap').add_default_mappings()
+            require('leap')
+            vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap)')
+            vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
         end,
         dependencies = 'tpope/vim-repeat',
     },
@@ -157,4 +134,4 @@ return {
         build = 'cd app && npm install',
         ft = 'markdown'
     }
-} 
+}

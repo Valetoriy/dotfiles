@@ -1,10 +1,8 @@
 from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
 
 mod = "mod4"
-terminal = guess_terminal()
 
 def switch_to_group(qtile, group_number):
     current_screen = qtile.screens.index(qtile.current_screen)
@@ -51,7 +49,7 @@ keys = [
     Key([mod], "o", lazy.function(send_to_screen), desc="Switch screens"),
 
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod], "Return", lazy.spawn("kitty"), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "f", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
@@ -63,7 +61,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     Key([mod], "r", lazy.spawn("dmenu_run"), desc="Spawn a command using dmenu"),
-    Key([mod], "y", lazy.spawn("firefox"), desc="Launch the browser"),
+    Key([mod], "y", lazy.spawn("chromium"), desc="Launch the browser"),
     Key([mod], "g", lazy.spawn("flameshot gui"), desc="Take a screenshot"),
     Key([mod], "u", lazy.window.bring_to_front(), desc="Bring a window to the front"),
 
@@ -135,7 +133,7 @@ net_up = widget.Net(
 )
 clock = widget.Clock(format="%a %d/%m %H:%M", background="#1a1a1a")
 
-wp = "~/Downloads/pics/dragon.jpg"
+wp = "~/Downloads/pics/tech2.jpg"
 wp_mode = "fill"
 
 screens = [
