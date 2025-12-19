@@ -8,7 +8,7 @@ return function()
     keymap('n', '\\rn', '<cmd>Lspsaga rename<CR>')
     keymap('n', '\\rN', '<cmd>Lspsaga rename ++project<CR>')
 
-    keymap('n', '\\gd', '<cmd>Lspsaga goto_definition<CR>')
+    keymap('n', 'gd', '<cmd>Lspsaga goto_definition<CR>')
 
     keymap('n', '[d', '<cmd>Lspsaga diagnostic_jump_next<CR>')
     keymap('n', ']d', '<cmd>Lspsaga diagnostic_jump_prev<CR>')
