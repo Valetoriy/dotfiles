@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return {
-    'LunarVim/darkplus.nvim',
+    'lunarvim/darkplus.nvim',
     {
         'kevinhwang91/rnvimr',
         config = function()
@@ -26,7 +26,7 @@ return {
     },
     {
         'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
+        tag = 'v0.2.0',
         config = function()
             local keymap = vim.keymap.set
 
@@ -39,21 +39,34 @@ return {
     },
     {
         'nvim-treesitter/nvim-treesitter',
-        config = function()
-            require('nvim-treesitter.configs').setup {
-                -- ensure_installed = "all",
-                ignore_install = {},
-                highlight = { enable = true, disable = {},
-                    additional_vim_regex_highlighting = false,
-                },
-            }
-        end,
+        lazy = false,
     },
+    {
+        "mason-org/mason.nvim",
+        opts = {}
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {},
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
+        },
+    },
+    "nvimtools/none-ls.nvim",
     'tpope/vim-fugitive',
-    -- {
-    --     'voldikss/vim-floaterm',
-    --     config = require('plugins.floaterm'),
-    -- },
+    {
+        "hrsh7th/nvim-cmp",
+        config = require('plugins.nvim-cmp'),
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp_luasnip",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "saadparwaiz1/cmp_luasnip"
+        },
+    },
     {
         'akinsho/toggleterm.nvim',
         config = require('plugins.toggleterm'),
@@ -71,11 +84,6 @@ return {
         config = function()
             require('colorizer').setup()
         end
-    },
-    {
-        'glepnir/lspsaga.nvim',
-        config = require('plugins.lspsaga'),
-        dependencies = 'nvim-tree/nvim-web-devicons',
     },
     {
         'nvim-tree/nvim-web-devicons',
