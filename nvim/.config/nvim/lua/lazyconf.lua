@@ -68,6 +68,11 @@ return {
         },
     },
     {
+        'glepnir/lspsaga.nvim',
+        config = require('plugins.lspsaga'),
+        dependencies = 'nvim-tree/nvim-web-devicons',
+    },
+    {
         'akinsho/toggleterm.nvim',
         config = require('plugins.toggleterm'),
     },
